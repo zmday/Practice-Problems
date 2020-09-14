@@ -1,0 +1,34 @@
+# Grab input
+N = int(input())
+
+for i in range(N):
+    k, w = [int(number) for number in input().split(" ")] #number of characters, number of words of sam length 
+    
+    # Store words
+    words = []
+    for j in range(w):
+        words.append(input()) #
+
+
+    # Initialize count
+    count = k
+    #result = words[0]
+
+    # Loop through subsequent words
+    for j in range(1, w):
+        # last word: word[j - 1]
+        # next word: word[j]
+        temp = words[j]
+        found = False
+        for l in range(k):
+            if words[j-1].endswith(temp): #location of previous word, use in operator to check 
+                count += len(words[j-1]) - len(temp)
+                #result += words[j][count-1:]
+                found = True
+                break
+            else:
+                temp = temp[:-1] # remove last letter
+        if not found:
+            count += k
+            #result += words[j]
+    print(count)
